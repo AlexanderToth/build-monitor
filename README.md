@@ -8,7 +8,7 @@ sudo ./build.py --led-chain=2 --led-multiplexing=1 --text="Muy build" -b=20
 
 git config --global user.name "atoth"
 
-git config --global user.email "github@unf**ufo.com"
+git config --global user.email "github[at]unf**ufo.com"
 
 git clone https://github.com/AlexanderToth/build-monitor.git
 
