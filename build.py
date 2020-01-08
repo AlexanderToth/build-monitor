@@ -14,11 +14,14 @@ class RunText(SampleBase):
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
-        font.LoadFont("../../../../fonts/6x12.bdf")
-        textColor = graphics.Color(255, 100, 100)
+        font.LoadFont("../../../../fonts/5x8.bdf")
+        bigfont = graphics.Font()
+        bigfont.LoadFont("../../../../fonts/6x10.bdf")
+        textColor = graphics.Color(0, 200, 50)
         pos = offscreen_canvas.width
         inputText = self.args.text
         startTime = time.localtime()
+        dday = time.strptime("2020-09-01", "%Y-%m-%d")
 
         while True:
             offscreen_canvas.Clear()
@@ -27,16 +30,27 @@ class RunText(SampleBase):
 
             currTime = time.localtime()
             diff = (time.mktime(currTime) - time.mktime(startTime))
-            if diff < 5:
+            if diff % 100 < 40:
                 my_text = time.strftime("%I:%M:%S %p", time.localtime())
-                graphics.DrawText(offscreen_canvas, font, 5, 10, textColor, my_text)
-            else:
-                len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
+                graphics.DrawText(offscreen_canvas, font, 0, 10, textColor, my_text)
+                pos = offscreen_canvas.width
+            elif diff % 100 < 80:
+                len = graphics.DrawText(offscreen_canvas, bigfont, pos, 10, textColor, my_text)
                 pos -= 1
                 if (pos + len < 0):
                     pos = offscreen_canvas.width
+            else:
+                delta = datetime.datetime(2020, 9, 1) - datetime.datetime.now()
+                my_text = str(delta.days) + " Days"
+                graphics.DrawText(offscreen_canvas, font, 1, 9, textColor, my_text)
+                my_text = str(delta.seconds/3600) + " Hours"
+                graphics.DrawText(offscreen_canvas, font, 1, 19, textColor, my_text)
 
-            time.sleep(0.05)
+                graphics.DrawText(offscreen_canvas, font, 1, 29, textColor, "Until Launch")
+                pos = offscreen_canvas.width
+
+
+            time.sleep(0.5)
             offscreen_canvas = self.matrix.SwapOnVSync(offscreen_canvas)
 
 
