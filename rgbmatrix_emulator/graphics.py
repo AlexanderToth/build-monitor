@@ -20,7 +20,7 @@ class Color:
         self.blue = blue
 
 def DrawText(canvas, font, x_pos, y_pos, text_color, text):
-    position = (x_pos * canvas.virtual_width_scale, -((y_pos * (canvas.virtual_height_scale)) + font.height))
+    position = (x_pos * canvas.virtual_width_scale, -((y_pos * (canvas.virtual_height_scale))))
     physical_font_length = position[0] + (font.width * len(text))
     
     # Actual size box
