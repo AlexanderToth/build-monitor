@@ -26,3 +26,5 @@ git log
 
 git commit -m "Hey there"
 
+# Build Env
+https://code.visualstudio.com/docs/python/python-tutorial#_select-a-python-interpreter
