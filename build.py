@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # Display a runtext with double-buffering.
-from samplebase import SampleBase
-from rgbmatrix import graphics
 import time
 import datetime
 
+if(__debug__):
+    from rgbmatrix_emulator.simplebase import SampleBase
+    from rgbmatrix_emulator import graphics
+else:
+    from samplebase import SampleBase
+    from rgbmatrix import graphics
 
 class RunText(SampleBase):
     def __init__(self, *args, **kwargs):
