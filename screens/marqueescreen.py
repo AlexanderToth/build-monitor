@@ -12,4 +12,4 @@ class MarqueeScreen():
         len = self.driver.DrawText(self.driver.bigfont, self.pos, self.text_height, self.text_color, self.my_text)
         self.pos -= 1
         if (self.pos + len < 0):
-            self.pos = offscreen_canvas.width
+            self.pos = self.driver.offscreen_canvas.width
